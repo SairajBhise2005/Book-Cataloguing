@@ -1,0 +1,45 @@
+# Secrets — never commit these
+.env
+.env.local
+.env.*.local
+*.key
+*.pem
+
+# Python (in case helper scripts are added)
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+.python-version
+
+# Node / build tools (in case any are added later)
+node_modules/
+dist/
+build/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editors / IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Claude Code's internal memory notes — private
+memory/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Local Apps Script clasp credentials (if you ever use clasp)
+.clasprc.json
+.clasp.json

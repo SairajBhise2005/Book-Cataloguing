@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Book Cataloguing</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Book Cataloguing</h1>
+  </header>
+
+  <main>
+    <!-- Screen 1: Capture -->
+    <section id="screen-capture" class="screen active">
+      <div class="actions">
+        <button id="btn-scan" class="primary">Scan ISBN</button>
+        <button id="btn-manual" class="secondary">Enter ISBN Manually</button>
+        <button id="btn-photo" class="secondary">Use Photo Instead</button>
+      </div>
+
+      <div id="manual-wrap" class="hidden">
+        <label>ISBN (10 or 13 digits)
+          <input type="text" id="manual-isbn" inputmode="numeric" autocomplete="off" placeholder="e.g. 9780140449136" />
+        </label>
+        <div class="actions">
+          <button id="btn-manual-lookup" class="primary">Look Up</button>
+          <button id="btn-manual-cancel" class="ghost">Cancel</button>
+        </div>
+      </div>
+
+      <div id="scanner-wrap" class="hidden">
+        <video id="scanner-video" playsinline muted></video>
+        <p class="hint">Point the camera at the ISBN barcode on the back of the book.</p>
+        <button id="btn-stop-scan" class="ghost">Cancel</button>
+      </div>
+
+      <div id="photo-wrap" class="hidden">
+        <video id="photo-video" playsinline muted></video>
+        <canvas id="photo-canvas" class="hidden"></canvas>
+        <div id="photo-preview" class="hidden">
+          <img id="photo-img" alt="Captured cover" />
+        </div>
+        <div class="actions">
+          <button id="btn-capture" class="primary">Capture</button>
+          <button id="btn-retake" class="ghost hidden">Retake</button>
+          <button id="btn-use-photo" class="primary hidden">Use This Photo</button>
+          <button id="btn-cancel-photo" class="ghost">Cancel</button>
+        </div>
+      </div>
+
+      <div id="status" class="status hidden"></div>
+      <div id="error" class="error hidden"></div>
+    </section>
+
+    <!-- Screen 2: Review -->
+    <section id="screen-review" class="screen">
+      <h2>Review &amp; Edit</h2>
+
+      <label>Title
+        <input type="text" id="f-title" />
+      </label>
+
+      <label>Author
+        <input type="text" id="f-author" />
+      </label>
+
+      <label>Language
+        <select id="f-language">
+          <option value="">— select —</option>
+          <option>Marathi</option>
+          <option>English</option>
+          <option>Hindi</option>
+        </select>
+      </label>
+
+      <label>Genre
+        <select id="f-genre">
+          <option value="">— select —</option>
+          <option>Story / Fiction</option>
+          <option>Informative / Self-Help</option>
+          <option>Competitive Exam</option>
+          <option>Biography</option>
+          <option>Finance / Business</option>
+          <option>Reference / Grammar</option>
+          <option>Other</option>
+        </select>
+      </label>
+
+      <label>Reading Level
+        <select id="f-level">
+          <option value="">— select —</option>
+          <option>Beginner</option>
+          <option>Intermediate</option>
+          <option>Expert</option>
+        </select>
+      </label>
+
+      <label>Sub-Genre / Topic
+        <input type="text" id="f-subgenre" />
+      </label>
+
+      <label>Location / Shelf
+        <input type="text" id="f-location" placeholder="e.g. Shelf A2" />
+      </label>
+
+      <label>Status
+        <input type="text" id="f-status" placeholder="e.g. Available" value="Available" />
+      </label>
+
+      <label>Notes
+        <textarea id="f-notes" rows="3"></textarea>
+      </label>
+
+      <div class="actions">
+        <button id="btn-save" class="primary">Save to Google Sheet</button>
+        <button id="btn-back" class="ghost">Cancel</button>
+      </div>
+
+      <div id="review-status" class="status hidden"></div>
+      <div id="review-error" class="error hidden"></div>
+    </section>
+  </main>
+
+  <!-- ZXing barcode scanner -->
+  <script src="https://unpkg.com/@zxing/library@0.21.3/umd/index.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
